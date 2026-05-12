@@ -1,0 +1,276 @@
+/* Page center & background */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    circle at top,
+    #ffafbd,
+    #ffc3a0,
+    #1f1c2c
+  );
+  overflow: hidden;
+.page {
+  background-size: 200% 200%;
+  animation: bgMove 20s ease infinite;
+}
+
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+}
+
+/* Main card */
+.app-container {
+  position: relative;
+  width: 78%;
+  max-width: 6400px;
+  padding: 45px 35px;
+  text-align: center;
+  background: linear-gradient(
+    120deg,
+    #dbd477,
+    #7c7cff,
+    #5eead4,
+    #ffc3a0,
+    #ff5f9e
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 22px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+/* Animated color glow outside */
+.app-container::before {
+  content: "";
+  position: absolute;
+  inset: -25px;
+  border-radius: 30px;
+  background: linear-gradient(
+    120deg,
+    #ff5f9e,
+    #7c7cff,
+    #5eead4,
+    #ffc3a0,
+    #ff5f9e
+  );
+  background-size: 300% 300%;
+  filter: blur(35px);
+  z-index: -1;
+  animation: glowMove 8s ease infinite;
+  opacity: 0.9;
+}
+
+@keyframes glowMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Title */
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  background: linear-gradient(
+    90deg,
+    #ff5f9e,
+    #ff84c8,
+    #ffc3a0
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 1.05rem;
+  color: #ffe4ec;
+  opacity: 0.9;
+}
+
+
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.25); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* Upload container */
+.upload-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* 3D Upload Button */
+.upload-btn {
+  padding: 14px 34px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(145deg, #ff5f9e, #ff84c8);
+  border-radius: 14px;
+  cursor: pointer;
+  user-select: none;
+
+  box-shadow:
+    0 10px 0 #c7437a,
+    0 18px 35px rgba(255, 95, 158, 0.45);
+
+  transition: all 0.15s ease;
+}
+
+.upload-btn:hover {
+  transform: translateY(-2px);
+}
+
+.upload-btn:active {
+  
+  transform: translateY(4px) scale(0.98);
+  box-shadow:
+    0 4px 0 #c7437a,
+    0 10px 20px rgba(255, 95, 158, 0.4);
+}
+
+/* Hint */
+.hint {
+  margin-top: 22px;
+  font-size: 0.9rem;
+  color: #ffd6e8;
+}
+
+/* Wave load animation */
+.wave > * {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: waveIn 0.8s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.5s; }
+.delay-3 { animation-delay: 0.8s; }
+.delay-4 { animation-delay: 1.1s; }
+.delay-5 { animation-delay: 1.4s; }
+
+@keyframes waveIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .app-container {
+    padding: 30px 22px;
+  }
+
+  .title {
+    font-size: 2.3rem;
+  }
+}
+/* =========================
+   UPLOAD COMPONENT STYLES
+   ========================= */
+
+.upload-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 3D Upload Button */
+.upload-btn {
+  margin-top: 10px;
+  padding: 14px 36px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(145deg, #ff5f9e, #ff84c8);
+  border-radius: 14px;
+  cursor: pointer;
+  user-select: none;
+
+  box-shadow:
+    0 10px 0 #c7437a,
+    0 18px 35px rgba(255, 95, 158, 0.45);
+
+  transition: all 0.15s ease;
+}
+
+/* Hover lift */
+.upload-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Click press */
+.upload-btn:active {
+  transform: translateY(6px);
+  box-shadow:
+    0 4px 0 #c7437a,
+    0 10px 20px rgba(255, 95, 158, 0.4);
+}
+
+/* Headings inside upload */
+.upload-container h3 {
+  margin-top: 28px;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffe4ec;
+  text-align: center;
+}
+
+/* Table styling (DataTable) */
+.upload-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.upload-container th {
+  padding: 10px;
+  background: rgba(255, 95, 158, 0.25);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.upload-container td {
+  padding: 8px;
+  font-size: 0.8rem;
+  color: #ffd6e8;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Chart safety */
+.upload-container canvas,
+.upload-container svg {
+  margin-top: 10px;
+  max-width: 100%;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .upload-btn {
+    padding: 12px 26px;
+    font-size: 0.95rem;
+  }
+
+  .upload-container h3 {
+    font-size: 1rem;
+  }
+}

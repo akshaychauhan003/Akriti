@@ -1,0 +1,32 @@
+-- Users table
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    hashed_password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Datasets table (metadata)
+CREATE TABLE datasets (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    filename VARCHAR(255) NOT NULL,
+    file_path VARCHAR(500) NOT NULL,  -- Path to Parquet file
+    columns JSONB NOT NULL,  -- e.g., [{"name": "col1", "type": "int64"}]
+    sample_rows JSONB,  -- First 10 rows as JSON
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Dashboards table
+CREATE TABLE dashboards (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    name VARCHAR(255) NOT NULL,
+    config JSONB NOT NULL,  -- Full dashboard JSON (charts, filters, priorities)
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Indexes
+CREATE INDEX idx_datasets_user_id ON datasets(user_id);
+CREATE INDEX idx_dashboards_user_id ON dashboards(user_id);
